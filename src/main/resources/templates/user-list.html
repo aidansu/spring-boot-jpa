@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>DEMO</title>
+</head>
+
+<body>
+<p th:text="'您好，'+ ${user.username} "></p>
+<h2>用户列表</h2>　
+
+<span th:if="${user!= null}">
+    <table class="data">
+        <tr>
+            <th>Id</th>
+            <th>username</th>
+            <th>telephone</th>
+            <th>CreateTime</th>
+            <th>LastLoginTime</th>
+            <th>UpdateTime</th>
+            <th>操作</th>
+        </tr>
+
+            <tr th:each="user:${users}">
+                <td th:text="${user.id} "></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.telephone}"></td>
+                <td th:text="${user.createTime}"></td>
+                <td th:text="${user.lastLoginTime}"></td>
+                <td th:text="${user.updateTime}"></td>
+
+                <td><a th:href="'/delete?id='+${user.id}">delete</a></td>
+            </tr>
+
+    </table>
+</span>
+<br/>
+<a th:href="@{/logout}">返回主页</a>
+
+</body>
+</html>
